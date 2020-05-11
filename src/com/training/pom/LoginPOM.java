@@ -22,8 +22,33 @@ public class LoginPOM {
 	private WebElement password;
 	
 	//@FindBy(id="formLogin_submitAuth")
-	@FindBy(xpath="//*[@id=\"content\"]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[3]/button[1]")
-	private WebElement loginBtn; 
+	@FindBy(xpath="//button[@class='btn btn-primary']")
+	//@FindBy(linkText=" Login")
+	private WebElement submit; 
+	
+	@FindBy(id="menu-catalog")
+	private WebElement catalog;
+	
+	@FindBy(linkText="Categories")
+	private WebElement catagories;
+	
+	@FindBy(xpath="//i[@class='fa fa-trash-o']")
+	private WebElement delete;
+	
+	//@FindBy(xpath="//a[contains(text(),'Products')]")
+	@FindBy(xpath="//li[@id='menu-catalog']//ul//li//a[contains(text(),'Products')]")
+	private WebElement catalogproduct;
+	
+	@FindBy(name="filter_name")
+	private WebElement productSearchName;
+	@FindBy(id="input-name")
+	private WebElement productNameSearch;
+	
+	@FindBy(id="button-filter")
+	private WebElement clickFilter;
+	
+	@FindBy(css="#input-price")
+	private WebElement sendProductPrice;
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -36,6 +61,40 @@ public class LoginPOM {
 	}
 	
 	public void clickLoginBtn() {
-		this.loginBtn.click(); 
+		this.submit.click();
+	}
+	
+	public void clickCatalogName() {
+		this.catalog.click();
+	}
+	
+	public void clickCatagories() {
+		this.catagories.click();
+	}
+	
+	public void clickDelete() {
+		this.delete.click();
+	}
+	
+	public void clickCatalogProduct() {
+		this.catalogproduct.click();
+	}
+	
+	public void productSearchName(String userName) {
+		this.productSearchName.clear();
+		this.productSearchName.sendKeys(userName);
+	}
+	public void sendProductPrice(String productPrice) {
+		this.password.clear(); 
+		this.password.sendKeys(productPrice); 
+	}
+	
+	public void productNameSearch(String productName) {
+		this.password.clear(); 
+		this.password.sendKeys(productName); 
+	}
+	
+	public void clickFilter() {
+		this.clickFilter.click();
 	}
 }

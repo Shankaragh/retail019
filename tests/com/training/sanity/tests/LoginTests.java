@@ -56,8 +56,8 @@ public class LoginTests {
 
 	@AfterMethod
 	public void tearDown() throws Exception {
-		Thread.sleep(1000);
-		//driver.quit();
+		Thread.sleep(5000);
+		driver.quit();
 	}
 
 	@Test(priority=1)
@@ -67,19 +67,15 @@ public class LoginTests {
 		screenShot.captureScreenShot("After entering the Login credentials");
 		loginPOM.clickLoginBtn();
 		screenShot.captureScreenShot("Login Success");
-		Thread.sleep(1000);
-
-		//Identifying the Catalog on the page and performing click
-
-		Actions act = new Actions(driver); WebElement retail =
-				driver.findElement(By.xpath("//i[@class='fa fa-tags fw']"));
-		act.click(retail).perform(); screenShot.captureScreenShot("Catalog List");
-		driver.findElement(By.xpath("//a[contains(text(),'Categories')]")).click();
-		screenShot.captureScreenShot("Click of Categories"); 
-		//Identifying the number of elements in table on 1st column 
-		List<WebElement> table =
-				driver.findElements(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr"));
+		Thread.sleep(3000);
+		loginPOM.clickCatalogName();
 		screenShot.captureScreenShot("List of items in Catalog"); 
+		loginPOM.clickCatagories();
+		screenShot.captureScreenShot("List of items in Category"); 
+		Thread.sleep(2000);
+		//Identifying the number of elements in table on 1st column 
+		List<WebElement> table = driver.findElements(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr"));
+		
 		int noOfRows = table.size(); System.out.println("Number of Rows under Category Name:" + noOfRows);
 
 		//For loop to select the 1st check box containing INDIAN 
@@ -98,98 +94,72 @@ public class LoginTests {
 
 		//Navigating to identify delete button
 		screenShot.captureScreenShot("Delete Button");
-
-		driver.findElement(By.xpath("//i[@class='fa fa-trash-o']")).click();
-		screenShot.captureScreenShot("Popup Delete Confirmation");
-		Thread.sleep(10000);
+		loginPOM.clickDelete();
+		Thread.sleep(5000);
 		// Switching to Alert 
-		driver.switchTo().alert().accept();
-		Thread.sleep(10000); 
+		//driver.switchTo().alert().accept();
+		//Thread.sleep(10000); 
 		//Accepting the pop up to confirm deletion
-		//Robot robo = new Robot(); 
-		//robo.keyPress(KeyEvent.VK_ENTER); 
-		//Thread.sleep(3000);
-		//robo.keyPress(KeyEvent.VK_ENTER); 
-		//robo.keyRelease(KeyEvent.VK_ENTER);
+		Robot robo = new Robot(); 
+		screenShot.captureScreenShot("Popup Delete Confirmation");
+		robo.keyPress(KeyEvent.VK_ENTER); 
+		Thread.sleep(5000);
+		robo.keyPress(KeyEvent.VK_ENTER);
+		Thread.sleep(5000);
+		robo.keyRelease(KeyEvent.VK_ENTER);
 		screenShot.captureScreenShot("Successfull deletion");
 
-	}
-	@Test(priority=2)
-	public void ProductInteger() {
-		//Identifying the Products on the page and performing click
-		Actions act = new Actions(driver);
-		WebElement retail = driver.findElement(By.xpath("//i[@class='fa fa-tags fw']")); 
-		act.click(retail).perform();
-		screenShot.captureScreenShot("Products List");
-		driver.findElement(By.xpath("//a[contains(text(),'Products')]")).click();
-		screenShot.captureScreenShot("Click of Products");
-		//Search page loads, search for Integer vitae iaculis massa.
-		driver.findElement(By.xpath("//input[@id='input-name']")).sendKeys("Integer vitae iaculis massa");
-		screenShot.captureScreenShot("Product search entered Integer vitae iaculis massa");
-		//once search key is entered, click on filter.
-		driver.findElement(By.xpath("//button[@id='button-filter']")).click();
-		screenShot.captureScreenShot("Product search result Integer vitae iaculis massa");
-		//Enter Valid credentials in Price text box
-		//driver.findElement(By.xpath("//input[@id='input-price']")).sendKeys("515");
-		driver.findElement(By.cssSelector("#input-price")).sendKeys("515");
-		screenShot.captureScreenShot("Product price entered Integer vitae iaculis massa");
-		//once search key is entered, click on filter.
-		driver.findElement(By.xpath("//button[@id='button-filter']")).click();
-		screenShot.captureScreenShot("Product search result Integer vitae iaculis massa");
+	} 
 
-	}
+	@Test(priority=2) 
+	  public void ProductsSearch() throws InterruptedException {
+		  loginPOM.clickCatalogName();
+		  Thread.sleep(5000);
+		  loginPOM.clickCatalogProduct();
+		  screenShot.captureScreenShot("List of items in Catalog for productc search"); 
+		  Thread.sleep(5000);
+		//	loginPOM.clickProducts();
+			screenShot.captureScreenShot("products click");
+			screenShot.captureScreenShot("Products List");
+			screenShot.captureScreenShot("List of items in Products");
+				//Search page loads, search for Integer vitae iaculis massa.
+				loginPOM.productSearchName("Integer vitae iaculis massa");
+				screenShot.captureScreenShot("Product search entered Integer vitae iaculis massa");
+				//once search key is entered, click on filter.
+				loginPOM.clickFilter();
+				screenShot.captureScreenShot("Product search result Integer vitae iaculis massa");
+				//Enter Valid credentials in Price text box
+				loginPOM.sendProductPrice("515");
+				screenShot.captureScreenShot("Product price entered Integer vitae iaculis massa");
+				//once search key is entered, click on filter.
+				loginPOM.clickFilter();
+				screenShot.captureScreenShot("Product search result Integer vitae iaculis massa");
+	  }
+	 
+	  
+	 @Test(priority=3) 
+	 public void ProductEarRings() throws InterruptedException, AWTException {
+		 loginPOM.clickCatalogName();
+		  Thread.sleep(5000);
+		  loginPOM.clickCatalogProduct();
+		  screenShot.captureScreenShot("List of items in Catalog for productc search for Ear Rings"); 
+		  Thread.sleep(5000);
+		//	loginPOM.clickProducts();
+			screenShot.captureScreenShot("products click");
+			screenShot.captureScreenShot("Products List for Ear Rings");
+				screenShot.captureScreenShot("List of items in Products for Ear Rings");
+				loginPOM.productSearchName("Ear Rings");
+				screenShot.captureScreenShot("Product search entered Ear Rings");
+				loginPOM.clickFilter();
+				screenShot.captureScreenShot("Product search result Ear Rings");
+				screenShot.captureScreenShot("Delete Button");
+				loginPOM.clickDelete();
+				Thread.sleep(5000);
+				// Switching to Alert 
+				screenShot.captureScreenShot("Popup Delete Confirmation");
+				driver.switchTo().alert().accept();
+				Thread.sleep(10000);
+	  }
+	 }
+	 
 
-	@Test(priority=3)
-	public void ProductEarRings() throws InterruptedException, AWTException {
-		//Identifying the Products on the page and performing click
-		Actions act = new Actions(driver);
-		WebElement retail = driver.findElement(By.xpath("//i[@class='fa fa-tags fw']")); 
-		act.click(retail).perform();
-		screenShot.captureScreenShot("Products List");
-		driver.findElement(By.xpath("//a[contains(text(),'Products')]")).click();
-		screenShot.captureScreenShot("Click of Products");
-		//Search page loads, search for Integer vitae iaculis massa.
-		driver.findElement(By.xpath("//input[@id='input-name']")).sendKeys("Ear Rings");
-		screenShot.captureScreenShot("Product search entered Ear Rings");
-		//once search key is entered, click on filter.
-		driver.findElement(By.xpath("//button[@id='button-filter']")).click();
-		screenShot.captureScreenShot("Product search result Ear Rings");
-		//Identifying the number of elements in table on 1st column 		
-		List<WebElement> table = driver.findElements(By.xpath("//tbody/tr/td/input"));
-		screenShot.captureScreenShot("List of items in Catalog");
-		int noOfRows = table.size();
-		System.out.println("Number of Rows under Category Name:" + noOfRows);
-
-		//For loop to select the 1st check box containing INDIAN
-		for (int i = 1; i <= noOfRows; i++) {
-			String ProductName = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr[" + i
-					+"]//td[3]")).getText();
-			System.out.println("before loop:" +ProductName);
-			if (ProductName.equalsIgnoreCase("Ear Rings")) {
-				System.out.println("Inside for loop:" + ProductName);
-				WebElement target = driver.findElement(By.xpath("//tbody//tr[1]//td[1]//input[1]"));
-				target.click();
-				screenShot.captureScreenShot("Checkbox selected Ear Rings");
-				break;
-
-			}
-		}
-		//Navigating to identify delete button
-		driver.findElement(By.xpath("//i[@class='fa fa-trash-o']")).click();
-		screenShot.captureScreenShot("Delete Button on Ear Rings");
-		Thread.sleep(10000);
-		// Switching to Alert and Accepting the pop up to confirm deletion 
-		screenShot.captureScreenShot("Popup Delete Confirmation on Ear Rings");
-		// driver.switchTo().alert().accept();
-		// Thread.sleep(10000);
-		// driver.switchTo().alert().accept();
-		// screenShot.captureScreenShot("Successful deletion");
-
-		Robot robo = new Robot();
-		robo.keyPress(KeyEvent.VK_ENTER); 
-		Thread.sleep(10000);
-		robo.keyPress(KeyEvent.VK_ENTER);
-		robo.keyRelease(KeyEvent.VK_ENTER);
-		screenShot.captureScreenShot("Successfull deletion on Ear Rings");
-	}
-}
