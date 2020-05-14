@@ -1,5 +1,8 @@
 package com.training.pom;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +35,9 @@ public class LoginPOM {
 	@FindBy(linkText="Categories")
 	private WebElement catagories;
 	
+	@FindBy(linkText="CategoriesList")
+	private WebElement selectCheckBox;
+	
 	@FindBy(xpath="//i[@class='fa fa-trash-o']")
 	private WebElement delete;
 	
@@ -41,6 +47,7 @@ public class LoginPOM {
 	
 	@FindBy(name="filter_name")
 	private WebElement productSearchName;
+	
 	@FindBy(id="input-name")
 	private WebElement productNameSearch;
 	
@@ -70,6 +77,28 @@ public class LoginPOM {
 	
 	public void clickCatagories() {
 		this.catagories.click();
+	}
+	//check box selection under categories.
+	public void selectCheckBox() {
+		//Identifying the number of elements in table on 1st column 
+				List<WebElement> table = driver.findElements(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr"));
+
+				int noOfRows = table.size(); System.out.println("Number of Rows under Category Name:" + noOfRows);
+
+				//For loop to select the 1st check box containing INDIAN 
+				for (int i = 1; i <= noOfRows; i++) { 
+					String CategoryName = driver.findElement(By. xpath("//table[@class='table table-bordered table-hover']/tbody/tr[" + i +
+							"]//td[2]")).getText(); 
+					System.out.println("before loop" +CategoryName); 
+					if (CategoryName.equalsIgnoreCase("INDIAN")) {
+						System.out.println("Inside for loop" + CategoryName); 
+						WebElement target = driver.findElement(By.xpath("//tr[" + i + "]//td[1]//input[1]"));
+						target.click(); 
+					//	screenShot.captureScreenShot("Checkbox selected"); 
+						break; 
+						// System.out.println(CategoryName); 
+					} 
+				} 
 	}
 	
 	public void clickDelete() {

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Sample test Suite" duration-ms="48598" started-at="2020-05-08T01:35:58Z" finished-at="2020-05-08T01:36:47Z">
+  <suite name="Sample test Suite" duration-ms="28659" started-at="2020-05-14T05:43:49Z" finished-at="2020-05-14T05:44:17Z">
     <groups>
     </groups>
-    <test name="Sample test" duration-ms="48598" started-at="2020-05-08T01:35:58Z" finished-at="2020-05-08T01:36:47Z">
-      <class name="com.training.sanity.tests.LoginTests">
-        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.LoginTests@1b604f19]" name="setUpBeforeClass" is-config="true" duration-ms="56" started-at="2020-05-07T20:35:58Z" finished-at="2020-05-07T20:35:58Z">
+    <test name="Sample test" duration-ms="28659" started-at="2020-05-14T05:43:49Z" finished-at="2020-05-14T05:44:17Z">
+      <class name="com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser">
+        <test-method status="PASS" signature="browserSetUpLogin()[pri:0, instance:com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser@1593948d]" name="browserSetUpLogin" is-config="true" duration-ms="12747" started-at="2020-05-14T00:43:49Z" finished-at="2020-05-14T00:44:02Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpBeforeClass -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.LoginTests@1b604f19]" name="setUp" is-config="true" duration-ms="18840" started-at="2020-05-07T20:35:58Z" finished-at="2020-05-07T20:36:17Z">
+        </test-method> <!-- browserSetUpLogin -->
+        <test-method status="PASS" signature="createGroupToRegister()[pri:1, instance:com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser@1593948d]" name="createGroupToRegister" duration-ms="5378" started-at="2020-05-14T00:44:02Z" finished-at="2020-05-14T00:44:07Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="validLoginTest()[pri:1, instance:com.training.sanity.tests.LoginTests@1b604f19]" name="validLoginTest" duration-ms="28661" started-at="2020-05-07T20:36:17Z" finished-at="2020-05-07T20:36:46Z">
+        </test-method> <!-- createGroupToRegister -->
+        <test-method status="PASS" signature="adminToGenerateInvoice()[pri:3, instance:com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser@1593948d]" name="adminToGenerateInvoice" duration-ms="5501" started-at="2020-05-14T00:44:07Z" finished-at="2020-05-14T00:44:12Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validLoginTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.LoginTests@1b604f19]" name="tearDown" is-config="true" duration-ms="1002" started-at="2020-05-07T20:36:46Z" finished-at="2020-05-07T20:36:47Z">
+        </test-method> <!-- adminToGenerateInvoice -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser@1593948d]" name="tearDown" is-config="true" duration-ms="5001" started-at="2020-05-14T00:44:12Z" finished-at="2020-05-14T00:44:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.training.sanity.tests.LoginTests -->
+      </class> <!-- com.training.sanity.tests.AdminCretateNewGroupRegisterNewUser -->
     </test> <!-- Sample test -->
   </suite> <!-- Sample test Suite -->
 </testng-results>
